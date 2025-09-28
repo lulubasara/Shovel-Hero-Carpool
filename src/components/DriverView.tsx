@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { User } from 'firebase/auth';
 import { Driver, PassengerInfo } from '../types';
@@ -251,6 +252,9 @@ const DriverView: React.FC<DriverViewProps> = ({ user, switchToPassengerView }) 
       case 'departed': return '您的行程正在進行中';
       case 'active':
       case 'full':
+        // When status is 'active' or 'full', driver is guaranteed to be non-null.
+        // Add an explicit check to satisfy TypeScript's strict null checks.
+        if (!driver) return '管理您的行程';
         return driver.seatsAvailable <= 0 ? '您的車輛已客滿' : '編輯您的行程';
       default: return '管理您的行程';
     }
@@ -291,12 +295,14 @@ const DriverView: React.FC<DriverViewProps> = ({ user, switchToPassengerView }) 
              <div className="mt-8 border-t pt-4">
                 <h3 className="text-xl font-bold mb-4 text-center text-gray-700">已預訂乘客資訊</h3>
                 <div className="space-y-2">
-                    {(driver?.passengers?.length ?? 0) > 0 ? driver?.passengers.map(p => (
+                    {driver && driver.passengers.length > 0 ? (
+                      driver.passengers.map(p => (
                         <div key={p.userId} className="flex justify-between items-center bg-gray-100 p-2 rounded-md">
                             <span className="passenger-tag !mt-0 !mr-0">{p.lineId}</span>
                             <button type="button" className="text-sm font-bold text-red-600 hover:text-red-800" onClick={() => handleCancelPassenger(p)} disabled={status === 'departed' || isSubmitting}>取消</button>
                         </div>
-                    )) : (
+                      ))
+                    ) : (
                         <p className="text-gray-500 text-center">目前尚無乘客預訂。</p>
                     )}
                 </div>

@@ -1,6 +1,3 @@
-// Fix: Add reference to vite client types to fix import.meta.env errors
-/// <reference types="vite/client" />
-
 import { initializeApp, FirebaseApp } from 'firebase/app';
 import { 
     getAuth, 
