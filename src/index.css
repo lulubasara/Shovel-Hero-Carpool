@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+@import 'leaflet/dist/leaflet.css';
+@import 'react-leaflet-markercluster/dist/styles.min.css';
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+}
+.driver-card {
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+.driver-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+.btn {
+    transition: all 0.2s ease;
+}
+.btn:hover {
+    opacity: 0.9;
+}
+.btn-primary {
+    background-color: #2563eb;
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+.btn-secondary {
+    background-color: #4b5563;
+    color: white;
+}
+ .btn-danger {
+    background-color: #dc2626;
+    color: white;
+}
+.passenger-tag {
+    background-color: #e0f2fe;
+    color: #0c4a6e;
+    font-size: 0.8rem;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    margin-right: 4px;
+    margin-top: 4px;
+    display: inline-flex;
+    align-items: center;
+}
+/* Leaflet popup customization */
+.leaflet-popup-content-wrapper {
+    border-radius: 8px;
+}
+.leaflet-popup-content {
+    margin: 12px;
+    font-family: 'Noto Sans TC', sans-serif;
+}
